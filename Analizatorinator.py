@@ -1,25 +1,33 @@
 import collections
 
 def count_words(text):
-    """подсчитывает количество слов в тексте"""
-    return len(text.split())
+    """Подсчитывает количество слов в тексте."""
+    words = text.split() # Разделяем текст на слова по пробелам
+    return len(words) # Возвращаем количество слов
+
 def most_common_char(text):
-    """находит самый часто встречающийся символ в тексте исключая пробелы"""
-    counter = collections.Counter(text.replace(' ', ''))
-    if counter:
-        return counter.most_common(1)[0][0]
-    return None  # если текст пустой или состоит только из пробелов
+    """Находит самый часто встречающийся символ в тексте, исключая пробелы."""
+    text_without_spaces = text.replace(" ", "") # Удаляем пробелы
+    if not text_without_spaces: # Если текст пустой после удаления пробелов
+        return None
+    counter = collections.Counter(text_without_spaces) # Считаем символы
+    most_common = counter.most_common(1) # Получаем самый частый символ
+    return most_common[0][0] # Возвращаем символ
+
 def reverse_words(text):
-    """переворачивает каждое слово в тексте сохраняя порядок"""
-    return ' '.join(word[::-1] for word in text.split())
+    """Переворачивает каждое слово в тексте, сохраняя порядок слов."""
+    words = text.split() # Разделяем текст на слова
+    reversed_words = [word[::-1] for word in words] # Переворачиваем каждое слово
+    return " ".join(reversed_words) # Объединяем слова обратно в строку
 
 def main():
-    """основной цикл программы"""
+    """Основной цикл программы для взаимодействия с пользователем."""
     while True:
-        text = input("Введите текст (или 'exit' для выхода): ")
-        if text.lower() == 'exit':
+        text = input("Введите текст (или 'exit' для выхода): ") # Запрашиваем ввод
+        if text.lower() == "exit": # Проверяем, хочет ли пользователь выйти
             print("Выход из программы.")
             break
+        # Выводим результаты анализа
         print(f"Количество слов: {count_words(text)}")
         common_char = most_common_char(text)
         if common_char:
@@ -28,5 +36,5 @@ def main():
             print("Самый частый символ: текст пустой или состоит только из пробелов")
         print(f"Реверс слов: {reverse_words(text)}")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
