@@ -24,4 +24,5 @@
    cd Analizatorinator
 3. Запустите программу:
    - Запустите скрипт Analizatorinator.py:
-     ```bash python Analizatorinator.py```
+     ```bash
+     python Analizatorinator.py
